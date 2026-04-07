@@ -37,10 +37,14 @@
     </div>
 
     <script>
-        // ADD YOUR ITEMS HERE
-        // Make sure "l" matches your ZIP filename exactly!
+        // THE ITEMS LIST
+        // I updated the "l" to match your actual filename on GitHub
         const items = [
-            { n: "GLITCHIFY (ZIP)", c: "PLUGINS", l: "Glitchify.zip" }
+            { 
+                n: "GLITCHIFY (ZIP)", 
+                c: "PLUGINS", 
+                l: "Glitchify (EditingFlow).zip" 
+            }
         ];
 
         const container = document.getElementById('sections-container');
@@ -53,7 +57,7 @@
                     ${items.filter(i => i.c === cat).map(item => `
                         <div class="preset-card glass p-8 rounded-2xl flex flex-col justify-between border border-white/5">
                             <h3 class="text-xl font-bold tracking-tight uppercase">${item.n}</h3>
-                            <a href="${item.l}" download="${item.l}" class="mt-8 block w-full text-center py-3 bg-white text-black text-xs font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-sm">
+                            <a href="${item.l}" download class="mt-8 block w-full text-center py-3 bg-white text-black text-xs font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-sm">
                                 Get Asset
                             </a>
                         </div>
