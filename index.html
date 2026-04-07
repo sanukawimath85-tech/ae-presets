@@ -7,64 +7,63 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; -webkit-user-select: none; user-select: none; }
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
         .flow-text { background: linear-gradient(to right, #fff, #00eeff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .category-btn { border: 2px solid #00eeff22; transition: 0.3s; cursor: pointer; position: relative; }
-        .category-btn:hover { border-color: #00eeff; background: rgba(0, 238, 255, 0.05); transform: translateY(-3px); }
-        .coming-soon-badge { font-size: 0.6rem; letter-spacing: 0.2em; color: #00eeff; border: 1px solid #00eeff44; padding: 2px 8px; border-radius: 4px; margin-top: 10px; font-weight: 900; }
+        .category-btn { border: 2px solid #00eeff22; transition: 0.3s; cursor: pointer; }
+        .category-btn:hover { border-color: #00eeff; background: rgba(0, 238, 255, 0.05); transform: translateY(-5px); }
         .hidden { display: none !important; }
     </style>
 </head>
-<body>
+<body class="p-6 md:p-20">
 
-    <div class="max-w-6xl mx-auto px-6 pb-20">
-        <header class="py-20 text-center">
-            <h1 class="text-7xl font-black tracking-tighter uppercase italic flow-text">EditingFlow</h1>
-            <p class="text-zinc-500 text-sm tracking-[0.4em] uppercase font-bold mt-4">Boyka x Thivi • Premium Editing Assets</p>
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-20">
+            <h1 class="text-6xl md:text-8xl font-black italic flow-text uppercase tracking-tighter">EditingFlow</h1>
+            <p class="text-zinc-500 text-[10px] tracking-[0.5em] uppercase font-bold mt-4">Boyka x Thivi • Premium Editing Assets</p>
         </header>
 
-        <div id="main-menu" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div onclick="openView('plugins-view')" class="category-btn glass p-16 rounded-3xl text-3xl font-black tracking-widest uppercase flex flex-col items-center justify-center">
-                <span class="text-5xl mb-4">📁</span> 
-                PLUGINS
+        <div id="main-menu" class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div onclick="showPlugins()" class="category-btn glass p-20 rounded-[40px] flex flex-col items-center justify-center">
+                <span class="text-6xl mb-6">📁</span>
+                <h2 class="text-3xl font-black uppercase tracking-widest">Plugins</h2>
             </div>
 
-            <div class="category-btn glass p-16 rounded-3xl text-3xl font-black tracking-widest uppercase flex flex-col items-center justify-center opacity-60 cursor-not-allowed">
-                <span class="text-5xl mb-4">💻</span> 
-                APPS
-                <span class="coming-soon-badge">COMING SOON</span>
+            <div class="glass p-20 rounded-[40px] flex flex-col items-center justify-center opacity-40 cursor-not-allowed">
+                <span class="text-6xl mb-6">💻</span>
+                <h2 class="text-3xl font-black uppercase tracking-widest">Apps</h2>
+                <span class="mt-4 px-4 py-1 border border-[#00eeff] text-[#00eeff] text-[10px] font-bold rounded">COMING SOON</span>
             </div>
         </div>
 
         <div id="plugins-view" class="hidden">
-            <button onclick="openView('main-menu')" class="mb-10 text-zinc-500 hover:text-white font-bold uppercase tracking-widest transition-colors">← Back to Dashboard</button>
+            <button onclick="showMenu()" class="mb-10 text-zinc-500 hover:text-white font-bold uppercase text-xs tracking-widest">← Back to Menu</button>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <script>
-                    // These are the names of the files from your Assets screenshot
-                    const plugins = [
+                    // The names from your Assets screenshot
+                    const assets = [
                         "AfterCodecs.v1.7.2.EditingFlow", "Bokeh.Win.EditingFlow", "BorisFX.Mocha.Pro.EditingFlow",
-                        "Deep.Glow.2.1.0.2.EditingFlow", "Deep.Glow.V1.Win.EditingFlow", "Element.3D.WIN.EditingFlow",
-                        "EZCO-CRT-EMULATOR.EditingFlow", "Flow.1.4.2.EditingFlow", "Flow.v1.5.2.EditingFlow",
-                        "FXConsole_1.0.5_Installer_x64.EditingFlow", "Influx.v1.3.0.EditingFlow", "Instant.4K.EditingFlow",
-                        "Magic.Bullet.Looks.2024.EditingFlow", "Omino.EditingFlow", "OpticalFlares.EditingFlow",
-                        "Pro.Shaders.EditingFlow", "RSMB.Pro.EditingFlow", "Saber.EditingFlow", 
-                        "Sapphire.2024.EditingFlow", "Signal.EditingFlow", "Trapcode.Suite.2024.EditingFlow",
-                        "Twixtor.EditingFlow", "Twitch.EditingFlow", "universe.EditingFlow", "VFX.Suite.EditingFlow"
+                        "ClearPlus", "Deep.Glow.2.1.0.2.EditingFlow", "Deep.Glow.V1.Win.EditingFlow",
+                        "Element.3D.WIN.EditingFlow", "EZCO-CRT-EMULATOR.EditingFlow", "Flow.1.4.2.EditingFlow",
+                        "Flow.v1.5.2.EditingFlow", "FXConsole_1.0.5_Installer_x64.EditingFlow", "Influx.v1.3.0.EditingFlow",
+                        "Instant.4K.EditingFlow", "Magic.Bullet.Looks.2024.EditingFlow", "Omino.EditingFlow",
+                        "OpticalFlares.EditingFlow", "Pro.Shaders.EditingFlow", "RSMB.Pro.EditingFlow",
+                        "Saber.EditingFlow", "Sapphire.2024.EditingFlow", "Signal.EditingFlow",
+                        "Trapcode.Suite.2024.EditingFlow", "Twixtor.EditingFlow", "Twitch.EditingFlow",
+                        "universe.EditingFlow", "VFX.Suite.EditingFlow", "After.Effects.2020.EditingFlow"
                     ];
 
-                    // This builds the boxes and the download links automatically
-                    document.write(plugins.map(name => `
-                        <div class="glass p-5 rounded-xl border border-white/5 flex flex-col justify-between hover:border-[#00eeff44] transition-all group">
+                    document.write(assets.map(name => `
+                        <div class="glass p-6 rounded-2xl flex flex-col justify-between hover:border-[#00eeff44] transition-all group">
                             <div>
-                                <h3 class="text-[13px] font-bold uppercase italic group-hover:text-[#00eeff] leading-tight">${name.replace(/\./g, ' ')}</h3>
-                                <p class="text-zinc-600 text-[8px] font-black mt-1 uppercase tracking-widest">Premium Asset</p>
+                                <h3 class="text-sm font-bold uppercase italic group-hover:text-[#00eeff]">${name.replace(/\./g, ' ')}</h3>
+                                <p class="text-zinc-600 text-[8px] font-black mt-1 uppercase tracking-widest">Ready to Download</p>
                             </div>
                             <a href="https://github.com/EditingFlow2/ae-presets/releases/download/v1.0/${name}.zip" 
                                download 
-                               class="mt-4 block w-full text-center py-2 bg-white/5 hover:bg-white hover:text-black text-[9px] font-black tracking-widest uppercase transition-all rounded-md">
-                                Download Now
+                               class="mt-6 block w-full text-center py-3 bg-white/5 hover:bg-white hover:text-black text-[10px] font-black tracking-widest uppercase transition-all rounded-xl">
+                               Download
                             </a>
                         </div>
                     `).join(''));
@@ -74,7 +73,18 @@
     </div>
 
     <script>
-        function openView(id) {
+        function showPlugins() {
             document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('plugins-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showMenu() {
             document.getElementById('plugins-view').classList.add('hidden');
-            document.getElementById(id).classList
+            document.getElementById('main-menu').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+</body>
+</html>
