@@ -10,11 +10,9 @@
         body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; -webkit-user-select: none; user-select: none; }
         .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
         .flow-text { background: linear-gradient(to right, #fff, #00eeff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .category-btn { border: 2px solid #00eeff22; transition: 0.3s; cursor: pointer; }
+        .category-btn { border: 2px solid #00eeff22; transition: 0.3s; cursor: pointer; position: relative; }
         .category-btn:hover { border-color: #00eeff; background: rgba(0, 238, 255, 0.05); transform: translateY(-3px); }
-        .app-link { color: #55aaff; transition: 0.2s; font-size: 1rem; font-weight: 500; display: block; padding: 6px 0; text-decoration: none; }
-        .app-link:hover { color: #00eeff; text-decoration: underline; }
-        .section-header { border-left: 3px solid #00eeff; padding-left: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .coming-soon-badge { font-size: 0.6rem; letter-spacing: 0.2em; color: #00eeff; border: 1px solid #00eeff44; padding: 2px 8px; border-radius: 4px; margin-top: 10px; font-weight: 900; }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -27,16 +25,49 @@
         </header>
 
         <div id="main-menu" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div onclick="openView('plugins-view')" class="category-btn glass p-16 rounded-3xl text-3xl font-black tracking-widest uppercase flex flex-col items-center gap-4">
-                <span class="text-5xl">📁</span> PLUGINS
+            <div onclick="openView('plugins-view')" class="category-btn glass p-16 rounded-3xl text-3xl font-black tracking-widest uppercase flex flex-col items-center justify-center">
+                <span class="text-5xl mb-4">📁</span> 
+                PLUGINS
             </div>
-            <div onclick="openView('apps-view')" class="category-btn glass p-16 rounded-3xl text-3xl font-black tracking-widest uppercase flex flex-col items-center gap-4">
-                <span class="text-5xl">💻</span> APPS
+
+            <div class="category-btn glass p-16 rounded-3xl text-3xl font-black tracking-widest uppercase flex flex-col items-center justify-center opacity-60 cursor-not-allowed">
+                <span class="text-5xl mb-4">💻</span> 
+                APPS
+                <span class="coming-soon-badge">COMING SOON</span>
             </div>
         </div>
 
         <div id="plugins-view" class="hidden">
             <button onclick="openView('main-menu')" class="mb-10 text-zinc-500 hover:text-white font-bold uppercase tracking-widest">← Back to Dashboard</button>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass p-10 rounded-3xl border border-white/5">
-                    <h3 class="text-3xl font-black
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="glass p-10 rounded-3xl border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-3xl font-black uppercase italic">GLITCHIFY</h3>
+                        <p class="text-[#00eeff] text-xs font-bold mt-2 uppercase">EditingFlow Original</p>
+                    </div>
+                    <a href="Glitchify (EditingFlow).zip" download class="mt-10 block w-full text-center py-5 bg-white text-black text-sm font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-lg">Get Asset</a>
+                </div>
+
+                <div class="glass p-10 rounded-3xl border border-white/5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-3xl font-black uppercase italic">SAPPHIRE FIX</h3>
+                        <p class="text-[#00eeff] text-xs font-bold mt-2 uppercase">Essential Plugin</p>
+                    </div>
+                    <a href="YourSecondFile.zip" download class="mt-10 block w-full text-center py-5 bg-white text-black text-sm font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-lg">Get Asset</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openView(id) {
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('plugins-view').classList.add('hidden');
+            document.getElementById(id).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
