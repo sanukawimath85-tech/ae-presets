@@ -28,7 +28,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* BIG VISIBLE RETURN BUTTON */
+        /* BIG CYAN RETURN BUTTON */
         .return-btn {
             font-family: 'Space Mono', monospace;
             font-size: 22px;
@@ -41,12 +41,14 @@
             padding: 15px 30px;
             border-radius: 15px;
             background: rgba(0, 238, 255, 0.05);
-            border: 1px solid var(--neon-blue);
+            border: 2px solid var(--neon-blue);
             cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 238, 255, 0.2);
         }
 
         .return-btn:hover {
-            background: rgba(0, 238, 255, 0.15);
+            background: var(--neon-blue);
+            color: #000;
             transform: translateX(-10px);
         }
 
@@ -66,6 +68,7 @@
             text-align: center;
             padding: 3.5rem;
             transition: all 0.4s ease;
+            height: 100%;
         }
 
         .active-card { cursor: pointer; }
@@ -78,7 +81,7 @@
         .emoji-icon {
             font-size: 80px;
             margin-bottom: 2rem;
-            filter: drop-shadow(0 0 10px rgba(0, 238, 255, 0.2));
+            filter: drop-shadow(0 0 10px rgba(0, 238, 255, 0.3));
         }
 
         .status-tag {
@@ -90,7 +93,7 @@
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            margin-top: 2rem;
+            margin-top: auto;
         }
 
         #credit-bar {
@@ -119,24 +122,24 @@
             
             <div onclick="openEditing()" class="portal-card glass active-card">
                 <div class="emoji-icon">🎬</div>
-                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2">Editing<br>Section</h2>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2 leading-tight">Editing<br>Pack</h2>
                 <p class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest">Plugins & Presets</p>
                 <div class="status-tag" style="color: var(--neon-blue); border-color: var(--neon-blue);">Enter</div>
             </div>
 
             <div class="portal-card glass">
                 <div class="emoji-icon">🎮</div>
-                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2">Bloodstrike<br>Clips</h2>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2 leading-tight">Bloodstrike<br>Clips</h2>
                 <p class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest">Raw Gameplay Edits</p>
                 <div class="status-tag">Coming Soon</div>
             </div>
 
             <div class="portal-card glass">
                 <div class="emoji-icon">💎</div>
-                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2">Upload<br>Method</h2>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2 leading-tight">Upload<br>Method</h2>
                 <p class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest leading-relaxed">
                     No-Loss Settings for<br>
-                    <span class="text-cyan-400">TikTok • IG • FB</span>
+                    <span class="text-cyan-400">TikTok • Instagram • Facebook</span>
                 </p>
                 <div class="status-tag">Locked</div>
             </div>
@@ -163,3 +166,31 @@
             document.getElementById('main-header').classList.add('hidden');
             document.getElementById('editing-view').classList.remove('hidden');
             document.getElementById('credit-bar').classList.remove('hidden');
+            
+            const container = document.getElementById('assetContainer');
+            container.innerHTML = assetList.map(name => `
+                <div class="glass p-10 rounded-[32px] border border-white/5 text-center">
+                    <h3 class="font-bold uppercase text-sm mb-4 text-white">${name}</h3>
+                    <p class="text-cyan-400 text-[11px] font-black tracking-widest">PASSWORD: youngtv</p>
+                </div>
+            `).join('');
+        }
+
+        function closeEditing() {
+            document.getElementById('editing-view').classList.add('hidden');
+            document.getElementById('credit-bar').classList.add('hidden');
+            document.getElementById('main-hub').classList.remove('hidden');
+            document.getElementById('main-header').classList.remove('hidden');
+        }
+
+        function filterAssets() {
+            let input = document.getElementById('assetSearch').value.toLowerCase();
+            let cards = document.getElementById('assetContainer').children;
+            for (let card of cards) {
+                let name = card.querySelector('h3').innerText.toLowerCase();
+                card.style.display = name.includes(input) ? "block" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
