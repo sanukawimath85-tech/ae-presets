@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EditingFlow | Premium Assets</title>
+    <title>EditingFlow | Creator Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
@@ -48,16 +48,17 @@
             filter: drop-shadow(0 0 15px rgba(0, 238, 255, 0.3));
         }
 
-        .category-btn { cursor: pointer; position: relative; overflow: hidden; }
-        .category-btn:hover { 
+        /* Portal Cards Styling */
+        .portal-card { cursor: pointer; overflow: hidden; position: relative; }
+        .portal-card:hover { 
             border-color: var(--neon-blue); 
-            background: rgba(0, 238, 255, 0.03);
-            transform: translateY(-8px);
+            background: rgba(0, 238, 255, 0.05);
+            transform: translateY(-10px);
         }
+        .portal-card:hover .portal-icon { transform: scale(1.1) rotate(5deg); color: var(--neon-blue); }
 
         .plugin-card { 
             cursor: pointer; 
-            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -68,44 +69,31 @@
             transform: translateY(-5px);
         }
 
-        .plugin-title { font-size: 1.2rem; font-weight: 800; color: #fff; text-transform: uppercase; }
-
         .search-input {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
             transition: 0.4s;
-            backdrop-filter: blur(10px);
         }
-        .search-input:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 238, 255, 0.15);
-        }
+        .search-input:focus { outline: none; border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(0, 238, 255, 0.15); }
 
         .free-badge {
-            font-size: 11px;
-            font-weight: 900;
-            color: #000;
-            background: var(--neon-blue);
-            padding: 4px 12px;
-            border-radius: 6px;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(0, 238, 255, 0.4);
+            font-size: 11px; font-weight: 900; color: #000; background: var(--neon-blue);
+            padding: 4px 12px; border-radius: 6px; letter-spacing: 1px;
         }
 
-        /* BIGGER PASSWORD TEXT */
         .password-tag {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--neon-blue);
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            text-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+            font-size: 13px; font-weight: 800; color: var(--neon-blue);
+            margin-top: 8px; text-transform: uppercase; letter-spacing: 0.05em;
         }
 
         .hidden { display: none !important; }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide { animation: slideUp 0.6s ease forwards; }
     </style>
 </head>
 <body>
@@ -114,36 +102,56 @@
         Official Distribution & Verified Assets by YoungTV
     </div>
 
-    <div class="max-w-6xl mx-auto px-6 pt-16 pb-24 min-h-screen flex flex-col">
-        <header class="text-center mb-24">
+    <div class="max-w-7xl mx-auto px-6 pt-16 pb-24 min-h-screen flex flex-col">
+        
+        <header class="text-center mb-20">
             <h1 class="text-7xl md:text-9xl font-black flow-text tracking-tighter uppercase mb-2">EditingFlow</h1>
-            <p class="text-zinc-500 text-xs tracking-[0.4em] font-bold uppercase">Premium Digital Assets</p>
+            <p id="sub-header" class="text-zinc-500 text-xs tracking-[0.4em] font-bold uppercase">Universal Creator Hub</p>
         </header>
 
         <main class="flex-grow">
-            <div id="main-menu" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div onclick="showPlugins()" class="category-btn glass p-16 rounded-[48px] flex flex-col items-center justify-center text-center">
-                    <span class="text-5xl mb-6">📁</span>
-                    <h2 class="text-4xl font-extrabold uppercase tracking-tight mb-2">Plugins</h2>
-                    <p class="text-zinc-500 text-sm font-semibold uppercase tracking-wide">27 Premium Assets</p>
+            
+            <div id="main-hub" class="grid grid-cols-1 md:grid-cols-3 gap-8 animate-slide">
+                
+                <div onclick="showSection('editing')" class="portal-card glass p-12 rounded-[48px] flex flex-col items-center text-center">
+                    <div class="portal-icon text-6xl mb-8 transition-transform duration-500">🎬</div>
+                    <h2 class="text-3xl font-extrabold uppercase tracking-tighter mb-4">Editing</h2>
+                    <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest leading-relaxed">Plugins, Presets & Add-ons</p>
+                    <span class="mt-8 text-[10px] text-cyan-400 font-black border border-cyan-400/20 px-4 py-2 rounded-full uppercase">Enter Library</span>
                 </div>
-                <div class="glass p-16 rounded-[48px] flex flex-col items-center justify-center text-center opacity-40 cursor-not-allowed">
-                    <span class="text-5xl mb-6">💻</span>
-                    <h2 class="text-4xl font-extrabold uppercase tracking-tight">Apps</h2>
-                    <p class="text-cyan-500 text-[10px] font-black border border-cyan-500/30 px-3 py-1 rounded-full uppercase tracking-widest mt-4">Coming Soon</p>
+
+                <div onclick="showSection('clips')" class="portal-card glass p-12 rounded-[48px] flex flex-col items-center text-center">
+                    <div class="portal-icon text-6xl mb-8 transition-transform duration-500">🔫</div>
+                    <h2 class="text-3xl font-extrabold uppercase tracking-tighter mb-4">Blood Strike</h2>
+                    <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest leading-relaxed">Raw Clips & Montages</p>
+                    <span class="mt-8 text-[10px] text-zinc-600 font-black border border-white/10 px-4 py-2 rounded-full uppercase">Coming Soon</span>
                 </div>
+
+                <div onclick="showSection('enhancer')" class="portal-card glass p-12 rounded-[48px] flex flex-col items-center text-center">
+                    <div class="portal-icon text-6xl mb-8 transition-transform duration-500">💎</div>
+                    <h2 class="text-3xl font-extrabold uppercase tracking-tighter mb-4">Enhancer</h2>
+                    <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest leading-relaxed">AI Upscaling & Settings</p>
+                    <span class="mt-8 text-[10px] text-zinc-600 font-black border border-white/10 px-4 py-2 rounded-full uppercase">Locked</span>
+                </div>
+
             </div>
 
-            <div id="plugins-view" class="hidden">
+            <div id="editing-view" class="hidden animate-slide">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-8">
-                    <button onclick="showMenu()" class="flex items-center gap-3 text-zinc-500 hover:text-white transition-all uppercase text-xs font-bold tracking-widest">
-                        ← Return Home
+                    <button onclick="showHub()" class="flex items-center gap-3 text-zinc-500 hover:text-white transition-all uppercase text-xs font-bold tracking-widest">
+                        ← Back to Hub
                     </button>
-                    <input type="text" id="pluginSearch" onkeyup="filterPlugins()" placeholder="Search library..." 
+                    <input type="text" id="pluginSearch" onkeyup="filterPlugins()" placeholder="Search assets..." 
                            class="search-input w-full md:w-96 px-8 py-5 rounded-3xl font-bold text-sm">
                 </div>
                 <div id="pluginContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
+
+            <div id="other-view" class="hidden text-center py-20 animate-slide">
+                <h2 class="text-4xl font-black text-zinc-800 uppercase mb-4 italic">Content Under Development</h2>
+                <button onclick="showHub()" class="text-cyan-400 font-bold uppercase tracking-widest text-xs">Return to Hub</button>
+            </div>
+
         </main>
 
         <footer class="mt-24 pt-12 border-t border-white/5 text-center">
@@ -177,11 +185,11 @@
                 return `
                 <div onclick="window.location.href='${downloadUrl}'" class="glass p-10 rounded-[32px] plugin-card group">
                     <div class="flex items-start justify-between mb-8">
-                        <h3 class="plugin-title group-hover:text-cyan-400 transition-colors">${displayName}</h3>
+                        <h3 class="plugin-title group-hover:text-cyan-400 transition-colors font-bold uppercase text-lg leading-tight">${displayName}</h3>
                         <span class="free-badge">FREE</span>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="text-zinc-600 text-[10px] font-extrabold uppercase tracking-widest italic">YoungTV Official</p>
+                    <div>
+                        <p class="text-zinc-600 text-[10px] font-extrabold uppercase tracking-widest italic mb-1">YoungTV Official</p>
                         <p class="password-tag">PASSWORD: youngtv</p>
                     </div>
                 </div>
@@ -189,17 +197,28 @@
             }).join('');
         }
 
+        function showSection(section) {
+            document.getElementById('main-hub').classList.add('hidden');
+            if(section === 'editing') {
+                document.getElementById('editing-view').classList.remove('hidden');
+                document.getElementById('sub-header').innerText = "Plugin Library";
+                renderCards();
+            } else {
+                document.getElementById('other-view').classList.remove('hidden');
+                document.getElementById('sub-header').innerText = "Coming Soon";
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function showHub() {
+            document.getElementById('editing-view').classList.add('hidden');
+            document.getElementById('other-view').classList.add('hidden');
+            document.getElementById('main-hub').classList.remove('hidden');
+            document.getElementById('sub-header').innerText = "Universal Creator Hub";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
         function filterPlugins() { renderCards(document.getElementById('pluginSearch').value); }
-        function showPlugins() { 
-            document.getElementById('main-menu').classList.add('hidden'); 
-            document.getElementById('plugins-view').classList.remove('hidden'); 
-            renderCards(); 
-        }
-        function showMenu() { 
-            document.getElementById('plugins-view').classList.add('hidden'); 
-            document.getElementById('main-menu').classList.remove('hidden'); 
-        }
-        renderCards();
     </script>
 </body>
 </html>
