@@ -38,25 +38,37 @@
         </div>
 
         <div id="plugins-view" class="hidden">
-            <button onclick="openView('main-menu')" class="mb-10 text-zinc-500 hover:text-white font-bold uppercase tracking-widest">← Back to Dashboard</button>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <div class="glass p-10 rounded-3xl border border-white/5 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-3xl font-black uppercase italic">GLITCHIFY</h3>
-                        <p class="text-[#00eeff] text-xs font-bold mt-2 uppercase">EditingFlow Original</p>
-                    </div>
-                    <a href="Glitchify (EditingFlow).zip" download class="mt-10 block w-full text-center py-5 bg-white text-black text-sm font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-lg">Get Asset</a>
-                </div>
+            <button onclick="openView('main-menu')" class="mb-10 text-zinc-500 hover:text-white font-bold uppercase tracking-widest transition-colors">← Back to Dashboard</button>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <script>
+                    // These are the names of the files from your Assets screenshot
+                    const plugins = [
+                        "AfterCodecs.v1.7.2.EditingFlow", "Bokeh.Win.EditingFlow", "BorisFX.Mocha.Pro.EditingFlow",
+                        "Deep.Glow.2.1.0.2.EditingFlow", "Deep.Glow.V1.Win.EditingFlow", "Element.3D.WIN.EditingFlow",
+                        "EZCO-CRT-EMULATOR.EditingFlow", "Flow.1.4.2.EditingFlow", "Flow.v1.5.2.EditingFlow",
+                        "FXConsole_1.0.5_Installer_x64.EditingFlow", "Influx.v1.3.0.EditingFlow", "Instant.4K.EditingFlow",
+                        "Magic.Bullet.Looks.2024.EditingFlow", "Omino.EditingFlow", "OpticalFlares.EditingFlow",
+                        "Pro.Shaders.EditingFlow", "RSMB.Pro.EditingFlow", "Saber.EditingFlow", 
+                        "Sapphire.2024.EditingFlow", "Signal.EditingFlow", "Trapcode.Suite.2024.EditingFlow",
+                        "Twixtor.EditingFlow", "Twitch.EditingFlow", "universe.EditingFlow", "VFX.Suite.EditingFlow"
+                    ];
 
-                <div class="glass p-10 rounded-3xl border border-white/5 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-3xl font-black uppercase italic">SAPPHIRE FIX</h3>
-                        <p class="text-[#00eeff] text-xs font-bold mt-2 uppercase">Essential Plugin</p>
-                    </div>
-                    <a href="YourSecondFile.zip" download class="mt-10 block w-full text-center py-5 bg-white text-black text-sm font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-lg">Get Asset</a>
-                </div>
-
+                    // This builds the boxes and the download links automatically
+                    document.write(plugins.map(name => `
+                        <div class="glass p-5 rounded-xl border border-white/5 flex flex-col justify-between hover:border-[#00eeff44] transition-all group">
+                            <div>
+                                <h3 class="text-[13px] font-bold uppercase italic group-hover:text-[#00eeff] leading-tight">${name.replace(/\./g, ' ')}</h3>
+                                <p class="text-zinc-600 text-[8px] font-black mt-1 uppercase tracking-widest">Premium Asset</p>
+                            </div>
+                            <a href="https://github.com/EditingFlow2/ae-presets/releases/download/v1.0/${name}.zip" 
+                               download 
+                               class="mt-4 block w-full text-center py-2 bg-white/5 hover:bg-white hover:text-black text-[9px] font-black tracking-widest uppercase transition-all rounded-md">
+                                Download Now
+                            </a>
+                        </div>
+                    `).join(''));
+                </script>
             </div>
         </div>
     </div>
@@ -65,9 +77,4 @@
         function openView(id) {
             document.getElementById('main-menu').classList.add('hidden');
             document.getElementById('plugins-view').classList.add('hidden');
-            document.getElementById(id).classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-    </script>
-</body>
-</html>
+            document.getElementById(id).classList
