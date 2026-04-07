@@ -3,65 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AE Preset Hub</title>
+    <title>BT ARCHIVE | AE PRESETS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #050505; color: #ffffff; font-family: sans-serif; }
-        .neon-text { text-shadow: 0 0 10px #00eeff; color: #00eeff; }
-        .card { background: #111; border: 1px solid #222; transition: 0.3s; }
-        .card:hover { border-color: #00eeff; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
+        .neon-border { border-bottom: 2px solid #00eeff; box-shadow: 0 4px 15px -5px rgba(0, 238, 255, 0.4); }
+        .preset-card:hover { border-color: #00eeff; background: rgba(0, 238, 255, 0.02); transform: translateY(-2px); transition: 0.3s; }
     </style>
 </head>
-<body>
-    <div class="flex justify-center p-4 border-b border-zinc-900">
-        <p class="text-zinc-700 text-xs italic">[ AD SPACE ]</p>
+<body oncontextmenu="return false;">
+
+    <div class="w-full flex justify-center py-4 bg-black border-b border-zinc-900">
+        <div class="text-[10px] text-zinc-600 tracking-widest uppercase italic">Advertisement</div>
     </div>
 
-    <div class="max-w-4xl mx-auto p-6">
-        <header class="text-center py-10">
-            <h1 class="text-4xl font-black neon-text uppercase italic">AE Preset Vault</h1>
-            <p class="text-zinc-500 mt-2">100+ Free Editing Packs & CCs</p>
+    <div class="max-w-5xl mx-auto px-6">
+        <header class="py-16 text-left">
+            <h1 class="text-7xl font-black tracking-tighter uppercase italic">
+                BT <span class="text-[#00eeff]">VLT</span>
+            </h1>
+            <div class="flex items-center gap-4 mt-2">
+                <p class="text-zinc-500 text-xs tracking-[0.2em] uppercase font-bold">Boyka x Thivi Archive</p>
+                <div class="h-[1px] w-20 bg-zinc-800"></div>
+            </div>
         </header>
 
-        <input type="text" id="search" placeholder="Search presets..." 
-            class="w-full p-4 bg-zinc-900 border border-zinc-800 rounded-xl mb-8 outline-none focus:border-[#00eeff]">
+        <div class="sticky top-6 z-50 mb-12">
+            <input type="text" id="search" placeholder="SEARCH ASSETS..." 
+                class="w-full p-5 glass rounded-xl text-white outline-none focus:border-[#00eeff] tracking-widest text-sm transition-all uppercase">
+        </div>
 
-        <div id="grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             </div>
     </div>
 
-    <div class="flex justify-center p-10 mt-10 border-t border-zinc-900">
-        <p class="text-zinc-700 text-xs italic">[ AD SPACE ]</p>
+    <div class="w-full flex justify-center py-20 mt-20 border-t border-zinc-900">
+        <div class="text-[10px] text-zinc-600 tracking-widest uppercase italic">Advertisement</div>
     </div>
 
     <script>
-        // Preset Data - Change these links to your Payhip/Drive links!
+        // ADD YOUR PAYHIP LINKS HERE
         const presets = [
-            { n: "Ultimate CC Pack", c: "Color", l: "#" },
-            { n: "Velocity Shake", c: "Motion", l: "#" },
-            { n: "Deep Glow Fix", c: "Plugin", l: "#" },
-            { n: "Smooth Zoom", c: "Transition", l: "#" }
+            { n: "ULTIMATE CC PACK", c: "COLOR", l: "#" },
+            { n: "VELOCITY SHAKES", c: "MOTION", l: "#" },
+            { n: "DEEP GLOW SETTINGS", c: "PLUGINS", l: "#" },
+            { n: "TRANSITION BUNDLE", c: "FX", l: "#" },
+            { n: "RENDER SETTINGS", c: "SYSTEM", l: "#" },
+            { n: "TEXT ANIMATIONS", c: "PRESETS", l: "#" }
         ];
 
         const grid = document.getElementById('grid');
         const search = document.getElementById('search');
 
-        function show(items) {
+        function render(items) {
             grid.innerHTML = items.map(i => `
-                <div class="card p-5 rounded-2xl">
-                    <span class="text-[10px] text-[#00eeff] font-bold uppercase">${i.c}</span>
-                    <h3 class="text-lg font-bold mt-1">${i.n}</h3>
-                    <a href="${i.l}" target="_blank" class="mt-4 block w-full bg-white text-black text-center py-2 rounded-lg font-bold hover:bg-[#00eeff]">Download</a>
+                <div class="preset-card glass p-8 rounded-2xl flex flex-col justify-between border border-white/5 h-full">
+                    <div>
+                        <span class="text-[9px] font-black text-[#00eeff] tracking-[0.3em] uppercase">${i.c}</span>
+                        <h3 class="text-xl font-bold mt-2 tracking-tight">${i.n}</h3>
+                    </div>
+                    <a href="${i.l}" target="_blank" class="mt-8 block w-full text-center py-3 bg-white text-black text-xs font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-sm">
+                        Get Asset
+                    </a>
                 </div>
             `).join('');
         }
 
         search.oninput = (e) => {
             const val = e.target.value.toLowerCase();
-            show(presets.filter(p => p.n.toLowerCase().includes(val)));
+            render(presets.filter(p => p.n.toLowerCase().includes(val) || p.c.toLowerCase().includes(val)));
         };
 
-        show(presets);
+        render(presets);
+
+        // Security
+        document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
 </html>
