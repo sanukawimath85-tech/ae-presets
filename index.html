@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AE Preset Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: #ffffff; font-family: sans-serif; }
+        .neon-text { text-shadow: 0 0 10px #00eeff; color: #00eeff; }
+        .card { background: #111; border: 1px solid #222; transition: 0.3s; }
+        .card:hover { border-color: #00eeff; }
+    </style>
+</head>
+<body>
+    <div class="flex justify-center p-4 border-b border-zinc-900">
+        <p class="text-zinc-700 text-xs italic">[ AD SPACE ]</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto p-6">
+        <header class="text-center py-10">
+            <h1 class="text-4xl font-black neon-text uppercase italic">AE Preset Vault</h1>
+            <p class="text-zinc-500 mt-2">100+ Free Editing Packs & CCs</p>
+        </header>
+
+        <input type="text" id="search" placeholder="Search presets..." 
+            class="w-full p-4 bg-zinc-900 border border-zinc-800 rounded-xl mb-8 outline-none focus:border-[#00eeff]">
+
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            </div>
+    </div>
+
+    <div class="flex justify-center p-10 mt-10 border-t border-zinc-900">
+        <p class="text-zinc-700 text-xs italic">[ AD SPACE ]</p>
+    </div>
+
+    <script>
+        // Preset Data - Change these links to your Payhip/Drive links!
+        const presets = [
+            { n: "Ultimate CC Pack", c: "Color", l: "#" },
+            { n: "Velocity Shake", c: "Motion", l: "#" },
+            { n: "Deep Glow Fix", c: "Plugin", l: "#" },
+            { n: "Smooth Zoom", c: "Transition", l: "#" }
+        ];
+
+        const grid = document.getElementById('grid');
+        const search = document.getElementById('search');
+
+        function show(items) {
+            grid.innerHTML = items.map(i => `
+                <div class="card p-5 rounded-2xl">
+                    <span class="text-[10px] text-[#00eeff] font-bold uppercase">${i.c}</span>
+                    <h3 class="text-lg font-bold mt-1">${i.n}</h3>
+                    <a href="${i.l}" target="_blank" class="mt-4 block w-full bg-white text-black text-center py-2 rounded-lg font-bold hover:bg-[#00eeff]">Download</a>
+                </div>
+            `).join('');
+        }
+
+        search.oninput = (e) => {
+            const val = e.target.value.toLowerCase();
+            show(presets.filter(p => p.n.toLowerCase().includes(val)));
+        };
+
+        show(presets);
+    </script>
+</body>
+</html>
