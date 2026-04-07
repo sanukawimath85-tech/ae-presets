@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EditingFlow | Creator Hub</title>
+    <title>EditingFlow | Universal Asset Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
         
@@ -18,13 +17,14 @@
             background-color: var(--dark-bg); 
             color: #fff; 
             font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0;
             overflow-x: hidden;
         }
 
         .glass { 
             background: rgba(255, 255, 255, 0.03); 
             border: 1px solid rgba(255, 255, 255, 0.08); 
-            backdrop-filter: blur(15px); 
+            backdrop-filter: blur(20px); 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -32,24 +32,30 @@
             background: linear-gradient(135deg, #fff 0%, var(--neon-blue) 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
+            font-weight: 800;
         }
 
-        .portal-card { cursor: pointer; position: relative; }
+        /* Hub Section */
+        .portal-card { cursor: pointer; position: relative; height: 100%; }
         .portal-card:hover { 
             border-color: var(--neon-blue); 
             background: rgba(0, 238, 255, 0.05);
-            transform: translateY(-12px);
+            transform: translateY(-10px);
         }
 
-        .icon-circle {
-            width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.05); border-radius: 24px; font-size: 2.5rem;
-            margin-bottom: 2rem; color: var(--neon-blue); transition: 0.4s;
+        .portal-img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            transition: transform 0.4s ease;
         }
 
-        .portal-card:hover .icon-circle { background: var(--neon-blue); color: #000; transform: rotate(10deg); }
+        .portal-card:hover .portal-img {
+            transform: scale(1.1);
+        }
 
-        /* Credits bar - Hidden by default */
+        /* Credit Bar - Hidden on Main Hub */
         #credit-bar {
             background: linear-gradient(90deg, transparent, rgba(0, 238, 255, 0.1), transparent);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -57,21 +63,101 @@
             letter-spacing: 0.3em; text-transform: uppercase; color: var(--neon-blue);
         }
 
-        .search-input { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: white; }
         .hidden { display: none !important; }
         .animate-fade { animation: fadeIn 0.5s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div id="credit-bar" class="hidden">Official Distribution & Verified Assets by YoungTV</div>
+    <div id="credit-bar" class="hidden">Verified Distribution & Assets by YoungTV</div>
 
-    <div class="max-w-7xl mx-auto px-6 py-20 min-h-screen flex flex-col">
+    <div class="max-w-7xl mx-auto px-6 py-24 min-h-screen flex flex-col">
         
         <header class="text-center mb-24">
-            <h1 class="text-6xl md:text-8xl font-black flow-text tracking-tighter uppercase mb-4">EditingFlow</h1>
-            <p id="sub-header" class="text-zinc-500 text-xs tracking-[0.5em] font-bold uppercase">Universal Asset Hub</p>
+            <h1 class="text-6xl md:text-8xl flow-text tracking-tighter uppercase mb-2">EditingFlow</h1>
+            <p id="sub-header" class="text-zinc-500 text-[10px] tracking-[0.6em] font-bold uppercase">Universal Asset Hub</p>
         </header>
 
         <main class="flex-grow">
+            <div id="main-hub" class="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade">
+                
+                <div onclick="showSection('editing')" class="portal-card glass p-12 rounded-[48px] flex flex-col items-center text-center">
+                    <div class="text-6xl mb-6">🎬</div>
+                    <h2 class="text-2xl font-black uppercase tracking-tighter mb-2 leading-tight">Editing<br>Section</h2>
+                    <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Plugins & Presets</p>
+                </div>
+
+                <div onclick="showSection('clips')" class="portal-card glass p-12 rounded-[48px] flex flex-col items-center text-center">
+                    <img src="https://i.ibb.co/XfR0X97/bloodstrike-mask.png" class="portal-img" alt="Blood Strike">
+                    <h2 class="text-2xl font-black uppercase tracking-tighter mb-2 leading-tight">Blood Strike<br>Clips</h2>
+                    <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Raw Gameplay Edits</p>
+                </div>
+
+                <div onclick="showSection('export')" class="portal-card glass p-12 rounded-[48px] flex flex-col items-center text-center">
+                    <div class="text-6xl mb-6">🛡️</div>
+                    <h2 class="text-2xl font-black uppercase tracking-tighter mb-2 leading-tight">Quality<br>Guard</h2>
+                    <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest leading-relaxed">No-Loss High Quality<br>Uploading Methods</p>
+                </div>
+
+            </div>
+
+            <div id="editing-view" class="hidden animate-fade">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+                    <button onclick="showHub()" class="text-zinc-500 hover:text-white font-bold uppercase text-[10px] tracking-widest">← Return to Hub</button>
+                    <input type="text" id="pluginSearch" onkeyup="filterPlugins()" placeholder="Search assets..." 
+                           class="bg-white/5 border border-white/10 w-full md:w-80 px-6 py-4 rounded-2xl font-bold text-sm outline-none focus:border-cyan-400">
+                </div>
+                <div id="pluginContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+
+            <div id="other-view" class="hidden text-center py-20 animate-fade">
+                <h2 class="text-3xl font-black text-zinc-800 uppercase mb-6 italic">Resources Coming Soon</h2>
+                <button onclick="showHub()" class="text-cyan-400 font-bold uppercase tracking-widest text-[10px] border border-cyan-400/20 px-8 py-3 rounded-full">Back to Hub</button>
+            </div>
+        </main>
+
+        <footer id="main-footer" class="mt-24 pt-12 border-t border-white/5 text-center hidden">
+            <p class="text-zinc-500 text-[10px] font-bold tracking-[0.3em] uppercase">
+                © 2026 EditingFlow • Verified by <span class="text-white">YoungTV</span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const assets = ["BCC.2024.EditingFlow", "AfterCodecs.v1.7.2.EditingFlow", "Bokeh.Win.EditingFlow", "BorisFX.Mocha.Pro.EditingFlow", "ClearPlus", "Deep.Glow.2.1.0.2.EditingFlow", "Deep.Glow.V1.Win.EditingFlow", "Element.3D.WIN.EditingFlow", "EZCO-CRT-EMULATOR.EditingFlow", "Flow.1.4.2.EditingFlow", "Flow.v1.5.2.EditingFlow", "FXConsole_1.0.5_Installer_x64.EditingFlow", "Influx.v1.3.0.EditingFlow", "Instant.4K.EditingFlow", "Magic.Bullet.Looks.2024.EditingFlow", "Omino.EditingFlow", "OpticalFlares.EditingFlow", "Pro.Shaders.EditingFlow", "RSMB.Pro.EditingFlow", "Saber.EditingFlow", "Sapphire.2024.EditingFlow", "Signal.EditingFlow", "Trapcode.Suite.2024.EditingFlow", "Twixtor.EditingFlow", "Twitch.EditingFlow", "universe.EditingFlow", "VFX.Suite.EditingFlow"];
+
+        function renderCards(filter = "") {
+            const container = document.getElementById('pluginContainer');
+            container.innerHTML = assets.filter(n => n.toLowerCase().includes(filter.toLowerCase())).map(name => `
+                <div onclick="window.location.href='https://github.com/EditingFlow2/ae-presets/releases/download/v1.0/${name}.zip'" class="glass p-8 rounded-[32px] portal-card group">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="font-bold uppercase text-xs leading-tight group-hover:text-cyan-400 transition-colors">${name.replace(/\./g, ' ').replace('EditingFlow', '')}</h3>
+                        <span class="text-[8px] bg-cyan-400 text-black px-2 py-0.5 rounded font-black">FREE</span>
+                    </div>
+                    <p class="text-cyan-400 text-[11px] font-black tracking-widest uppercase">Password: youngtv</p>
+                </div>
+            `).join('');
+        }
+
+        function showSection(s) {
+            document.getElementById('main-hub').classList.add('hidden');
+            if(s === 'editing') {
+                document.getElementById('editing-view').classList.remove('hidden');
+                document.getElementById('credit-bar').classList.remove('hidden');
+                document.getElementById('main-footer').classList.remove('hidden');
+                renderCards();
+            } else {
+                document.getElementById('other-view').classList.remove('hidden');
+            }
+        }
+
+        function showHub() {
+            document.querySelectorAll('#editing-view, #other-view, #credit-bar, #main-footer').forEach(el => el.classList.add('hidden'));
+            document.getElementById('main-hub').classList.remove('hidden');
+        }
+
+        function filterPlugins() { renderCards(document.getElementById('pluginSearch').value); }
+    </script>
+</body>
+</html>
