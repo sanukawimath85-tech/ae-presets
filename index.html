@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BT ARCHIVE | AE PRESETS</title>
+    <title>EditingFlow | AE Assets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; }
+        body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; -webkit-user-select: none; user-select: none; }
         .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
-        .neon-border { border-bottom: 2px solid #00eeff; box-shadow: 0 4px 15px -5px rgba(0, 238, 255, 0.4); }
         .preset-card:hover { border-color: #00eeff; background: rgba(0, 238, 255, 0.02); transform: translateY(-2px); transition: 0.3s; }
+        .flow-text { background: linear-gradient(to right, #fff, #00eeff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -21,17 +21,17 @@
 
     <div class="max-w-5xl mx-auto px-6">
         <header class="py-16 text-left">
-            <h1 class="text-7xl font-black tracking-tighter uppercase italic">
-                BT <span class="text-[#00eeff]">VLT</span>
+            <h1 class="text-7xl font-black tracking-tighter uppercase italic flow-text">
+                EditingFlow
             </h1>
             <div class="flex items-center gap-4 mt-2">
-                <p class="text-zinc-500 text-xs tracking-[0.2em] uppercase font-bold">Boyka x Thivi Archive</p>
+                <p class="text-zinc-500 text-xs tracking-[0.2em] uppercase font-bold">Premium AE Assets • Boyka x Thivi</p>
                 <div class="h-[1px] w-20 bg-zinc-800"></div>
             </div>
         </header>
 
         <div class="sticky top-6 z-50 mb-12">
-            <input type="text" id="search" placeholder="SEARCH ASSETS..." 
+            <input type="text" id="search" placeholder="SEARCH PRESETS..." 
                 class="w-full p-5 glass rounded-xl text-white outline-none focus:border-[#00eeff] tracking-widest text-sm transition-all uppercase">
         </div>
 
@@ -44,7 +44,7 @@
     </div>
 
     <script>
-        // ADD YOUR PAYHIP LINKS HERE
+        // Update the 'l' values with your Payhip links
         const presets = [
             { n: "ULTIMATE CC PACK", c: "COLOR", l: "#" },
             { n: "VELOCITY SHAKES", c: "MOTION", l: "#" },
@@ -77,9 +77,6 @@
         };
 
         render(presets);
-
-        // Security
-        document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
 </html>
