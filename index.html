@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EditingFlow | Universal Asset Hub</title>
+    <title>EditingFlow | Asset Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Mono:wght@700&display=swap');
@@ -18,8 +18,7 @@
             color: #fff; 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .glass { 
@@ -32,26 +31,23 @@
         /* BIG VISIBLE RETURN BUTTON */
         .return-btn {
             font-family: 'Space Mono', monospace;
-            font-size: 20px;
+            font-size: 22px;
             letter-spacing: 2px;
-            color: #888;
-            transition: all 0.3s ease;
+            color: var(--neon-blue);
             display: flex;
             align-items: center;
             gap: 15px;
             text-transform: uppercase;
-            padding: 12px 24px;
+            padding: 15px 30px;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 238, 255, 0.05);
+            border: 1px solid var(--neon-blue);
             cursor: pointer;
         }
 
         .return-btn:hover {
-            color: var(--neon-blue);
-            background: rgba(0, 238, 255, 0.08);
-            border-color: var(--neon-blue);
-            transform: translateX(-8px);
+            background: rgba(0, 238, 255, 0.15);
+            transform: translateX(-10px);
         }
 
         .flow-text { 
@@ -61,17 +57,7 @@
             font-weight: 800;
         }
 
-        .hub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
-        }
-
         .portal-card { 
-            cursor: pointer; 
-            position: relative; 
             border-radius: 48px; 
             border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
@@ -79,10 +65,11 @@
             align-items: center;
             text-align: center;
             padding: 3.5rem;
-            min-height: 450px;
+            transition: all 0.4s ease;
         }
 
-        .portal-card:hover { 
+        .active-card { cursor: pointer; }
+        .active-card:hover { 
             border-color: var(--neon-blue); 
             background: rgba(0, 238, 255, 0.05);
             transform: translateY(-10px);
@@ -90,7 +77,6 @@
 
         .emoji-icon {
             font-size: 80px;
-            line-height: 1;
             margin-bottom: 2rem;
             filter: drop-shadow(0 0 10px rgba(0, 238, 255, 0.2));
         }
@@ -104,8 +90,76 @@
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: auto;
+            margin-top: 2rem;
         }
 
         #credit-bar {
+            background: linear-gradient(90deg, transparent, rgba(0, 238, 255, 0.1), transparent);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px 0; text-align: center; font-size: 10px; font-weight: 700;
+            letter-spacing: 0.3em; text-transform: uppercase; color: var(--neon-blue);
+            width: 100%;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div id="credit-bar" class="hidden">Verified Distribution & Assets by YoungTV</div>
+
+    <div class="max-w-7xl mx-auto px-6 py-20">
+        
+        <header id="main-header" class="text-center mb-20">
+            <h1 class="text-7xl md:text-8xl flow-text tracking-tighter uppercase mb-2">EditingFlow</h1>
+            <p class="text-zinc-500 text-[10px] tracking-[0.6em] font-bold uppercase italic">Universal Asset Hub</p>
+        </header>
+
+        <div id="main-hub" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div onclick="openEditing()" class="portal-card glass active-card">
+                <div class="emoji-icon">🎬</div>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2">Editing<br>Section</h2>
+                <p class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest">Plugins & Presets</p>
+                <div class="status-tag" style="color: var(--neon-blue); border-color: var(--neon-blue);">Enter</div>
+            </div>
+
+            <div class="portal-card glass">
+                <div class="emoji-icon">🎮</div>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2">Bloodstrike<br>Clips</h2>
+                <p class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest">Raw Gameplay Edits</p>
+                <div class="status-tag">Coming Soon</div>
+            </div>
+
+            <div class="portal-card glass">
+                <div class="emoji-icon">💎</div>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2">Upload<br>Method</h2>
+                <p class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest leading-relaxed">
+                    No-Loss Settings for<br>
+                    <span class="text-cyan-400">TikTok • IG • FB</span>
+                </p>
+                <div class="status-tag">Locked</div>
+            </div>
+
+        </div>
+
+        <div id="editing-view" class="hidden">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
+                <button onclick="closeEditing()" class="return-btn">← RETURN</button>
+                <input type="text" id="assetSearch" onkeyup="filterAssets()" placeholder="Search assets..." 
+                       class="bg-white/5 border border-white/10 px-8 py-4 rounded-2xl w-full md:w-80 text-sm outline-none focus:border-cyan-400">
+            </div>
+            <div id="assetContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </div>
+
+    </div>
+
+    <script>
+        const assetList = ["BCC 2024", "AfterCodecs", "Deep Glow", "Element 3D", "RSMB Pro", "Sapphire 2024", "Twixtor", "Universe", "VFX Suite"];
+
+        function openEditing() {
+            document.getElementById('main-hub').classList.add('hidden');
+            document.getElementById('main-header').classList.add('hidden');
+            document.getElementById('editing-view').classList.remove('hidden');
+            document.getElementById('credit-bar').classList.remove('hidden');
