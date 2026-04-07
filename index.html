@@ -37,11 +37,10 @@
     </div>
 
     <script>
-        // THE ITEMS LIST
-        // I updated the "l" to match your actual filename on GitHub
+        // ADD NEW PLUGINS HERE
         const items = [
             { 
-                n: "GLITCHIFY (ZIP)", 
+                n: "GLITCHIFY", 
                 c: "PLUGINS", 
                 l: "Glitchify (EditingFlow).zip" 
             }
@@ -57,14 +56,24 @@
                     ${items.filter(i => i.c === cat).map(item => `
                         <div class="preset-card glass p-8 rounded-2xl flex flex-col justify-between border border-white/5">
                             <h3 class="text-xl font-bold tracking-tight uppercase">${item.n}</h3>
-                            <a href="${item.l}" download class="mt-8 block w-full text-center py-3 bg-white text-black text-xs font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-sm">
+                            <button onclick="triggerDownload('${item.l}')" class="mt-8 block w-full text-center py-3 bg-white text-black text-xs font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all rounded-sm">
                                 Get Asset
-                            </a>
+                            </button>
                         </div>
                     `).join('')}
                 </div>
             </section>
         `).join('');
+
+        // AUTOMATIC DOWNLOAD FUNCTION
+        function triggerDownload(url) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', ''); // Triggers the auto-download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 </body>
 </html>
