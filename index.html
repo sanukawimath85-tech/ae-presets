@@ -10,9 +10,11 @@
         body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; -webkit-user-select: none; user-select: none; }
         .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
         .category-btn { border: 2px solid #00eeff44; transition: 0.3s; cursor: pointer; }
-        .category-btn:hover { border-color: #00eeff; background: rgba(0, 238, 255, 0.05); transform: translateY(-2px); }
+        .category-btn:hover { border-color: #00eeff; background: rgba(0, 238, 255, 0.05); transform: translateY(-3px); }
         .flow-text { background: linear-gradient(to right, #fff, #00eeff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .section-title { letter-spacing: 0.4em; color: #00eeff; font-weight: 900; margin-bottom: 16px; text-transform: uppercase; font-size: 0.65rem; border-bottom: 1px solid #111; padding-bottom: 8px; }
+        .app-link { color: #55aaff; transition: 0.2s; font-size: 0.95rem; font-weight: 500; display: block; padding: 4px 0; }
+        .app-link:hover { color: #00eeff; text-decoration: underline; }
+        .section-header { border-left: 3px solid #00eeff; padding-left: 12px; margin-bottom: 20px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -21,75 +23,11 @@
         <div class="text-[10px] text-zinc-600 tracking-widest uppercase italic font-bold">Advertisement</div>
     </div>
 
-    <div class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="max-w-6xl mx-auto px-6 pb-20">
         <header class="py-16 text-center">
-            <h1 class="text-6xl font-black tracking-tighter uppercase italic flow-text">EditingFlow</h1>
-            <p class="text-zinc-500 text-xs tracking-[0.2em] uppercase font-bold mt-2">Premium AE Assets • Boyka x Thivi</p>
+            <h1 class="text-7xl font-black tracking-tighter uppercase italic flow-text">EditingFlow</h1>
+            <p class="text-zinc-400 text-sm tracking-[0.3em] uppercase font-bold mt-4">Premium AE Assets • Boyka x Thivi</p>
         </header>
 
-        <div id="main-menu" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <button onclick="toggleView('plugins-folder')" class="category-btn glass p-12 rounded-2xl text-2xl font-black tracking-widest uppercase flex items-center justify-center gap-4">
-                📁 PLUGINS
-            </button>
-            <button onclick="toggleView('apps-folder')" class="category-btn glass p-12 rounded-2xl text-2xl font-black tracking-widest uppercase flex items-center justify-center gap-4">
-                💻 APPS
-            </button>
-        </div>
-
-        <div id="plugins-folder" class="hidden">
-            <button onclick="toggleView('main-menu')" class="mb-8 text-zinc-500 hover:text-white text-xs font-black uppercase tracking-widest">← Back to Menu</button>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between leading-tight">
-                    <h3 class="text-2xl font-black uppercase italic">GLITCHIFY</h3>
-                    <a href="Glitchify (EditingFlow).zip" download class="mt-8 block w-full text-center py-4 bg-white text-black text-xs font-black tracking-widest uppercase hover:bg-[#00eeff] transition-all">Get Asset</a>
-                </div>
-            </div>
-        </div>
-
-        <div id="apps-folder" class="hidden space-y-12">
-            <button onclick="toggleView('main-menu')" class="text-zinc-500 hover:text-white text-xs font-black uppercase tracking-widest">← Back to Menu</button>
-            
-            <section>
-                <h2 class="section-title">After Effects</h2>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">AE 2020</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">AE 2022</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">AE 2023</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">AE 2024</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">AE 2025</button>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Photoshop</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">PS 2020</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">PS 2024</button>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Other Softwares</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">CapCut PC</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">Handbrake</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">Topaz 2.6.4</button>
-                    <button class="glass p-4 text-[10px] font-bold hover:text-[#00eeff]">Topaz 3.1.10</button>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <script>
-        function toggleView(viewId) {
-            // Hide all views
-            document.getElementById('main-menu').classList.add('hidden');
-            document.getElementById('plugins-folder').classList.add('hidden');
-            document.getElementById('apps-folder').classList.add('hidden');
-            
-            // Show the selected one
-            document.getElementById(viewId).classList.remove('hidden');
-        }
-    </script>
-</body>
-</html>
+        <div id="main-menu" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <button onclick="toggle
